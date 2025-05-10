@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -10,4 +10,15 @@ import { ButtonModule } from 'primeng/button';
 })
 export class AppComponent {
   title = 'escola-ng';
+
+  constructor(private router: Router) { }
+
+  redirecionarCursos() {
+    // carregando/navegando para a rota /cursos
+    this.router.navigate(["/cursos"])
+  }
+
+  redirecionarHome(){
+    this.router.navigate(["/"])
+  }
 }
