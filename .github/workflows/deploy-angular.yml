@@ -15,6 +15,8 @@ jobs:
           echo "Configurando o git user.name"
   construir:
     runs-on: ubuntu-24.04
+    needs:
+      - configurar
     steps:
       - name: "Instalar as dependencias"
         run: echo 'Instalando as dependencias'
