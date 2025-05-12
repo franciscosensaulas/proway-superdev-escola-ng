@@ -1,5 +1,6 @@
 name: "Workflow Exemplo"
 on: 
+  push:
   workflow_dispatch:
 
 jobs:
@@ -20,6 +21,13 @@ jobs:
           node-version: 22
       - name: Instalar as dependencias
         run: npm ci
+      - name: Instalar Angular CLI
+        run: npm install --global @angular/cli
+      - name: Build - Gerar o fonte de produção
+        run: ng build --configuration production --base-href=/proway-superdev-escola-ng/
+      - name: "Listar arquivos e pastas"
+        run: |
+          ls -la
   construir:
     runs-on: ubuntu-24.04
     needs:
