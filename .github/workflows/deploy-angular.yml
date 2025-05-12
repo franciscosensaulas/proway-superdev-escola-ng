@@ -6,17 +6,18 @@ jobs:
   configurar:
     runs-on: ubuntu-latest
     steps:
-      # - name: Fazer o checkout do código
-      #   # essa é uma aciton que permite ter acesso ao código durante a execução do job
-      #   uses: actions/checkout@v4 
-      #   with:
-      #     ref: main # ref é um input que diz qual será o nome da branch que utilizaremos
+      - name: Fazer o checkout do código
+        # essa é uma aciton que permite ter acesso ao código durante a execução do job
+        uses: actions/checkout@v4 
+        with:
+          ref: main # ref é um input que diz qual será o nome da branch que utilizaremos
       - name: "Listar arquivos e pastas"
         run: |
           ls -la
-      - name: "Configurando o user no git"
-        run: |
-          echo "Configurando o git user.name"
+      - name: "Instalar Node.JS"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
   construir:
     runs-on: ubuntu-24.04
     needs:
