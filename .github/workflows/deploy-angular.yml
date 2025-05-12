@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  configurar:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Fazer o checkout do código
@@ -12,9 +12,6 @@ jobs:
         uses: actions/checkout@v4 
         with:
           ref: main # ref é um input que diz qual será o nome da branch que utilizaremos
-      - name: "Listar arquivos e pastas"
-        run: |
-          ls -la
       - name: "Instalar Node.JS"
         uses: actions/setup-node@v4
         with:
@@ -25,13 +22,9 @@ jobs:
         run: npm install --global @angular/cli
       - name: Build - Gerar o fonte de produção
         run: ng build --configuration production --base-href=/proway-superdev-escola-ng/
-      - name: "Listar arquivos e pastas"
-        run: |
-          ls -la
   construir:
     runs-on: ubuntu-24.04
-    needs:
-      - configurar
+    needs: build
     steps:
       - name: "Instalar as dependencias"
         run: echo 'Instalando as dependencias'
