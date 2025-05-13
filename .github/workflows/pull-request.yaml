@@ -11,9 +11,7 @@ jobs:
     steps:
       - name: Fazer o checkout do código
         # essa é uma aciton que permite ter acesso ao código durante a execução do job
-        uses: actions/checkout@v4 
-        with:
-          ref: main # ref é um input que diz qual será o nome da branch que utilizaremos
+        uses: actions/checkout@v4
       - name: "Instalar Node.JS"
         uses: actions/setup-node@v4
         with:
