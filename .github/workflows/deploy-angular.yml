@@ -31,5 +31,10 @@ jobs:
     runs-on: ubuntu-24.04
     needs: build
     steps:
+      - name: Fazer o checkout do código
+        # essa é uma aciton que permite ter acesso ao código durante a execução do job
+        uses: actions/checkout@v4 
+        with:
+          ref: main
       - name: "Listar arquivos"
         run: ls -la
