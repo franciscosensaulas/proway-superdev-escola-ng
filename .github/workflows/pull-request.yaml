@@ -1,0 +1,26 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches:
+      - main  # ou a branch principal do seu projeto
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fazer o checkout do código
+        # essa é uma aciton que permite ter acesso ao código durante a execução do job
+        uses: actions/checkout@v4 
+        with:
+          ref: main # ref é um input que diz qual será o nome da branch que utilizaremos
+      - name: "Instalar Node.JS"
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar as dependencias
+        run: npm ci
+      - name: Instalar Angular CLI
+        run: npm install --global @angular/cli
+      - name: Build - Gerar o fonte de produção
+        run: ng build --configuration production --base-href=/proway-superdev-escola-ng/

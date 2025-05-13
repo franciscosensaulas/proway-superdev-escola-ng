@@ -1,7 +1,9 @@
-name: "Workflow Exemplo"
-on: 
+name: "Deploy Angular PROD"
+on:
   push:
-  workflow_dispatch:
+    branches:
+      - main
+  # workflow_dispatch:
 
 jobs:
   build:
