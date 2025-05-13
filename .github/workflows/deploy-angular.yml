@@ -36,5 +36,18 @@ jobs:
         uses: actions/checkout@v4 
         with:
           ref: main
-      - name: "Listar arquivos"
-        run: ls -la
+      - name: Download do artefato
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+          path: ./dist
+      - name: "Configurar Git"
+        run: |
+          git config --global user.name "Francisco Lucas Janesch Lange Sens"
+          git config --global user.email "franciscosensaulas@gmail.com"
+          npm install --global angular-cli-ghpages
+      - name: Deploy to GitHub Pages
+        run: npx angular-cli-ghpages --dir=dist/escola-ng/browser --no-silent
+        env:
+          cli: true
+          GH_TOKEN: ${{ secrets.TOKEN_TO_DEPLOY }}
