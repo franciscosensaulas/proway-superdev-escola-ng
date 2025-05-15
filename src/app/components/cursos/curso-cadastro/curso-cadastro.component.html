@@ -1,0 +1,11 @@
+<p-floatlabel>
+    <input pInputText id="campo-nome" [(ngModel)]="curso.nome" autocomplete="off" />
+    <label for="campo-nome">Nome</label>
+</p-floatlabel>
+
+<p-floatlabel>
+    <p-inputmask id="campo-sigla" [(ngModel)]="curso.sigla" mask="***" />
+    <label for="campo-sigla">Sigla</label>
+</p-floatlabel>
+
+<p-button label="Cadastrar"></p-button>
