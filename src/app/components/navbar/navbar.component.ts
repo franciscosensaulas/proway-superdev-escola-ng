@@ -13,7 +13,6 @@ import { Ripple } from 'primeng/ripple';
   imports: [Menubar, BadgeModule, AvatarModule, InputTextModule, Ripple, CommonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
-  // encapsulation: ViewEncapsulation.None,
 })
 export class NavbarComponent {
   items: MenuItem[];
@@ -29,6 +28,11 @@ export class NavbarComponent {
         label: 'Cursos',
         icon: 'pi pi-graduation-cap',
         command: () => this.navegar("/cursos")
+      },
+      {
+        label: 'Alunos',
+        icon: 'pi pi-user',
+        command: () => this.navegar("/alunos")
       },
     ]
   }
