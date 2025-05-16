@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Currículo - João da Silva</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background-color: #1e1e1e;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+      border-radius: 8px;
+    }
+
+    header {
+      text-align: center;
+      border-bottom: 1px solid #333;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #ffffff;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #90caf9;
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .contact {
+      font-size: 0.9em;
+      color: #aaa;
+      margin-top: 5px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .skill-bar {
+      background: #2c2c2c;
+      border-radius: 5px;
+      margin: 5px 0 15px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      background: #2196f3;
+      padding: 5px;
+      color: white;
+      width: 0;
+      animation: fill 1.5s ease-in-out forwards;
+    }
+
+    .skill-bar-fill[data-width]:after {
+      content: attr(data-width);
+      float: right;
+      padding-right: 10px;
+    }
+
+    @keyframes fill {
+      from { width: 0; }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+
+    a {
+      color: #64b5f6;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>João da Silva</h1>
+      <p class="contact">Desenvolvedor Full Stack • <a href="mailto:joao.silva@email.com">joao.silva@email.com</a> • (11) 99999-9999</p>
+      <p class="contact">São Paulo - SP • <a href="https://github.com/joaosilva" target="_blank">GitHub</a> • <a href="https://linkedin.com/in/joaosilva" target="_blank">LinkedIn</a></p>
+    </header>
+
+    <section class="section">
+      <h2>Resumo</h2>
+      <p>Desenvolvedor Full Stack com 5+ anos de experiência em criação de aplicações web modernas, com foco em performance, usabilidade e boas práticas. Especialista em JavaScript, React, Node.js e bancos de dados relacionais e não relacionais.</p>
+    </section>
+
+    <section class="section">
+      <h2>Habilidades Técnicas</h2>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="90%">JavaScript / TypeScript</div></div>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="85%">React / Next.js</div></div>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="80%">Node.js / Express</div></div>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="70%">MongoDB / PostgreSQL</div></div>
+      <div class="skill-bar"><div class="skill-bar-fill" data-width="75%">Docker / Git / CI/CD</div></div>
+    </section>
+
+    <section class="section">
+      <h2>Experiência Profissional</h2>
+      <ul>
+        <li>
+          <strong>Desenvolvedor Full Stack</strong> – Empresa XYZ (2021 - Atual)<br/>
+          <small>Desenvolvimento de aplicações SaaS com React e Node.js. Implantação de microsserviços em ambientes Docker.</small>
+        </li>
+        <li>
+          <strong>Desenvolvedor Front-End</strong> – Agência Web ABC (2019 - 2021)<br/>
+          <small>Criação de interfaces responsivas com HTML, CSS, JavaScript e Vue.js.</small>
+        </li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Educação</h2>
+      <ul>
+        <li><strong>Bacharelado em Ciência da Computação</strong> – Universidade Federal (2015 - 2019)</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Projetos Pessoais</h2>
+      <ul>
+        <li><strong>Portfólio pessoal:</strong> <a href="https://joaosilva.dev" target="_blank">joaosilva.dev</a></li>
+        <li><strong>API de clima com Node.js:</strong> <a href="https://github.com/joaosilva/clima-api" target="_blank">github.com/joaosilva/clima-api</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    // Animação de preenchimento de barras de habilidade
+    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+      const width = bar.getAttribute('data-width');
+      setTimeout(() => {
+        bar.style.width = width;
+      }, 300);
+    });
+  </script>
+</body>
+</html>
