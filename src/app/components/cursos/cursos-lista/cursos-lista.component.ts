@@ -18,47 +18,47 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class CursosListaComponent {
   cursos: Array<Curso>;
 
-  constructor(private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService){
+  constructor(private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService) {
     this.cursos = [
-      new Curso(1,"Angular","ANG"),
-      new Curso(1,"CSS 3","CSS"),
-      new Curso(1,"Banco de Dados MYSQL","MSQ"),
+      new Curso(1, "Angular", "ANG"),
+      new Curso(1, "CSS 3", "CSS"),
+      new Curso(1, "Banco de Dados MYSQL", "MSQ"),
     ]
   }
 
-  redirecionarPaginaCadastro(){
+  redirecionarPaginaCadastro() {
     this.router.navigate(["/cursos/cadastro"])
   }
 
   confirm1(event: Event) {
     this.confirmationService.confirm({
-        target: event.target as EventTarget,
-        message: 'Deseja realmente apagar?',
-        header: 'CUIDADO',
-        closable: true,
-        closeOnEscape: true,
-        icon: 'pi pi-exclamation-triangle',
-        rejectButtonProps: {
-            label: 'Cancel',
-            severity: 'secondary',
-            outlined: true,
-        },
-        acceptButtonProps: {
-            label: 'Save',
-        },
-        accept: () => {
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
-        },
-        reject: () => {
-            this.messageService.add({
-                severity: 'error',
-                summary: 'Rejected',
-                detail: 'You have rejected',
-                life: 3000,
-            });
-        },
+      target: event.target as EventTarget,
+      message: 'Deseja realmente apagar?',
+      header: 'CUIDADO',
+      closable: true,
+      closeOnEscape: true,
+      icon: 'pi pi-exclamation-triangle',
+      rejectButtonProps: {
+        label: 'Cancel',
+        severity: 'secondary',
+        outlined: true,
+      },
+      acceptButtonProps: {
+        label: 'Save',
+      },
+      accept: () => {
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Rejected',
+          detail: 'You have rejected',
+          life: 3000,
+        });
+      },
     });
-}
+  }
 
 
 }

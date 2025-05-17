@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -5,7 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DataHoraCustomizadaPipe implements PipeTransform {
 
-  transform(data: unknown, ...args: unknown[]): unknown {
-    return data;
+  constructor(private datePipe: DatePipe){}
+
+  transform(data: Date, ...args: unknown[]): unknown {
+    return this.datePipe.transform(data, "dd/MM/yyyy");
   }
 }
