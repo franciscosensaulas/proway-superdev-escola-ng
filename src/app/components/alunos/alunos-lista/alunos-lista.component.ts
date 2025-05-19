@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Aluno } from '../../../models/aluno';
 import { ButtonModule } from 'primeng/button';
 import { Dialog } from 'primeng/dialog';
@@ -14,6 +14,7 @@ import { AlunoCadastro } from '../../../models/aluno-cadastro';
 import { FormsModule } from '@angular/forms';
 import { InputMaskModule } from 'primeng/inputmask';
 import { DatePicker } from 'primeng/datepicker';
+import { AlunoService } from '../../../services/aluno.service';
 
 @Component({
   selector: 'app-alunos-lista',
@@ -38,20 +39,23 @@ import { DatePicker } from 'primeng/datepicker';
     FormatarCpfPipe,
     MessageService,
     ConfirmationService,
+    AlunoService,
   ]
 })
-export class AlunosListaComponent {
+export class AlunosListaComponent implements OnInit{
   alunos: Aluno[];
   alunoCadastro: AlunoCadastro; // objeto que será utilizado na dialog(modal) para caadastrar
   visible: boolean = false;
+  carregandoAlunos: boolean = false;
   dataMinima: Date;
   dataMaxima: Date;
 
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {
-    this.alunos = [
-      new Aluno("Matheus", "da Silva", new Date(2000, 4, 5), 1, "92134567899"),
-      new Aluno("Maria", "da Silva", new Date(2000, 4, 5), 1, "921.345.678-99")
-    ]
+  constructor(
+    private confirmationService: ConfirmationService, 
+    private messageService: MessageService,
+    private alunoService: AlunoService,
+  ) {
+    this.alunos = []
 
     this.alunoCadastro = new AlunoCadastro();
 
@@ -59,6 +63,16 @@ export class AlunosListaComponent {
 
     this.dataMinima = new Date(1900, 0, 1);
     this.dataMaxima = new Date(dataHoraAgora.getFullYear(), dataHoraAgora.getMonth(), dataHoraAgora.getDate())
+  }
+
+  ngOnInit(): void {
+    this.carregandoAlunos = true;
+    // Fazer a requisição para o back-end
+    this.alunoService.obterTodos().subscribe({
+      next: alunos => this.alunos = alunos,
+      error: erro => console.log("Ocorreu um erro ao carregar a lista de alunos:" + erro),
+      complete: ()  => this.carregandoAlunos = false
+    })
   }
 
   abrirModalCadastrar() {

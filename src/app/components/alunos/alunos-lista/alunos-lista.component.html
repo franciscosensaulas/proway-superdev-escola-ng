@@ -6,6 +6,10 @@
 </div>
 
 <p-table [value]="alunos" 
+    [paginator]="true"
+    [rows]="5"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [loading]="carregandoAlunos"
     showGridlines stripedRows
     [tableStyle]="{ 'min-width': '50rem' }">
     <ng-template #header>

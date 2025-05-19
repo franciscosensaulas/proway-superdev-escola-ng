@@ -11,7 +11,7 @@ export class AlunoService {
   private urlApi: string;
 
   constructor(private http: HttpClient) {
-    this.urlApi = "https://public.franciscosensaulas.com/alunos";
+    this.urlApi = "https://public.franciscosensaulas.com/api/v1/escola/alunos";
   }
 
   cadastrar(alunoCadastro: AlunoCadastro): Observable<any>{
