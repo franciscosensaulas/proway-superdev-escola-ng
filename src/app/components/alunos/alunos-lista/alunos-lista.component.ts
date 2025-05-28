@@ -65,7 +65,6 @@ export class AlunosListaComponent implements OnInit{
 
     this.dataMinima = new Date(1900, 0, 1);
     this.dataMaxima = new Date(dataHoraAgora.getFullYear(), dataHoraAgora.getMonth(), dataHoraAgora.getDate(), 23, 59, 59)
-    debugger
   }
 
   ngOnInit(): void {
@@ -101,7 +100,7 @@ export class AlunosListaComponent implements OnInit{
     this.dialogVisivelCadastrarEditar = true;
   }
 
-  confirm1(event: Event, alunoId: number) {
+  confirmarParaApagar(event: Event, alunoId: number) {
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Deseja realmente apagar?',
