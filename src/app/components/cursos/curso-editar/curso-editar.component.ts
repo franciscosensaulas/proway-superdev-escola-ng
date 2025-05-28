@@ -1,8 +1,26 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { CursoEditar } from '../../../models/curso-editar';
+import { CursoService } from '../../../services/curso.service';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-curso-editar',
-  imports: [],
+  imports: [
+    FormsModule,
+    InputTextModule,
+    FloatLabelModule,
+    InputMaskModule,
+    ButtonModule,
+    ToastModule,
+  ],
+  providers: [MessageService],
   templateUrl: './curso-editar.component.html',
   styleUrl: './curso-editar.component.css'
 })
