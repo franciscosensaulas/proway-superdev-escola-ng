@@ -1,11 +1,14 @@
-<p-floatlabel>
-    <input pInputText id="campo-nome" [(ngModel)]="curso.nome" autocomplete="off" />
-    <label for="campo-nome">Nome</label>
-</p-floatlabel>
+<div class="flex flex-column gap-4">
 
-<p-floatlabel>
-    <p-inputmask id="campo-sigla" [(ngModel)]="curso.sigla" mask="***" />
-    <label for="campo-sigla">Sigla</label>
-</p-floatlabel>
+    <p-floatlabel>
+        <input pInputText id="campo-nome" [(ngModel)]="curso.nome" autocomplete="off" />
+        <label for="campo-nome">Nome</label>
+    </p-floatlabel>
 
-<p-button label="Cadastrar" (click)="cadastrar()"></p-button>
+    <p-floatlabel>
+        <p-inputmask id="campo-sigla" [(ngModel)]="curso.sigla" mask="***" />
+        <label for="campo-sigla">Sigla</label>
+    </p-floatlabel>
+
+    <p-button label="Cadastrar" icon="pi pi-save" (click)="cadastrar()"></p-button>
+</div>
