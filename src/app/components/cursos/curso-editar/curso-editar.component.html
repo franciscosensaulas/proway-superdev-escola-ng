@@ -1,13 +1,46 @@
-<div class="flex flex-column gap-4">
-    <p-floatlabel>
-        <input pInputText id="campo-nome" [(ngModel)]="curso.nome" autocomplete="off" />
-        <label for="campo-nome">Nome</label>
-    </p-floatlabel>
+<div class="flex justify-content-between flex-wrap">
+    <div class="flex flex-column gap-4">
+        <p-floatlabel>
+            <input pInputText id="campo-nome" [(ngModel)]="curso.nome" autocomplete="off" />
+            <label for="campo-nome">Nome</label>
+        </p-floatlabel>
 
-    <p-floatlabel>
-        <p-inputmask id="campo-sigla" [(ngModel)]="curso.sigla" mask="***" />
-        <label for="campo-sigla">Sigla</label>
-    </p-floatlabel>
+        <p-floatlabel>
+            <p-inputmask id="campo-sigla" [(ngModel)]="curso.sigla" mask="***" />
+            <label for="campo-sigla">Sigla</label>
+        </p-floatlabel>
 
-    <p-button label="Editar" icon="pi pi-save" (click)="editar()"></p-button>
+        <p-button label="Editar" icon="pi pi-save" (click)="editar()"></p-button>
+    </div>
+
+    <div class="flex flex-column">
+        <div class="flex justify-content-end mb-2">
+            <p-button label="Registrar Matricula" severity="info" icon="pi pi-plus"
+                (click)="abrirModalRegistrarMatricula()"></p-button>
+        </div>
+
+        <p-table [value]="matriculas" showGridlines stripedRows [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template #header>
+                <tr>
+                    <th>Código</th>
+                    <th>Aluno</th>
+                    <th>Data Matricula</th>
+                    <th>Ação</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-matricula>
+                <tr>
+                    <td>{{ matricula.id }}</td>
+                    <td>{{ matricula.aluno.nome }}</td>
+                    <td>{{ matricula.dataMatricula }}</td>
+                    <td>
+                        <!-- <p-button label="Editar" (click)="redirecionarEditar(matricula.id)" severity="warn"
+                            icon="pi pi-pencil" class="mr-2" />
+                        <p-button label="Apagar" (click)="confirmarParaApagar($event, matricula.id)" icon="pi pi-trash"
+                            severity="danger" /> -->
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
 </div>
