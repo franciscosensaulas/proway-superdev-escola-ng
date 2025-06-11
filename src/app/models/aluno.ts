@@ -7,3 +7,10 @@ export class Aluno {
         public cpf: string = "",
     ){}
 }
+
+export class AlunoSelect {
+    constructor(
+        public nomeCompleto: string,
+        public id: number,
+    ){}
+}

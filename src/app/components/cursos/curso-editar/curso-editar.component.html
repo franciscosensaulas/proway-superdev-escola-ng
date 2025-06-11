@@ -44,3 +44,36 @@
         </p-table>
     </div>
 </div>
+
+<p-dialog
+    header="Matricular Aluno" 
+    [modal]="true" 
+    [(visible)]="modalCadastrarVisible" 
+    [style]="{ width: '25rem' }">
+
+    <div class="flex items-center gap-4 mb-2">
+        <label for="campo-aluno" class="font-semibold w-24">Aluno</label>
+         <!--
+            options => é a lista de itens que o usuário poderá escolher
+            optionLabel é a propriedade que o usuário visualizará para escolher (usuário escolhe por nome)
+            optionValue é o valor que o usuário escolheu (armazena o id do que foi escolhido)
+         -->
+        <p-select 
+            [options]="alunos"
+            appendTo="body"
+            [filter]="true"
+            filterBy="nomeCompleto" 
+            [(ngModel)]="matriculaCadastrar.alunoId" 
+            optionLabel="nomeCompleto"
+            optionValue="id"
+            placeholder="Escolha o aluno" 
+            class="w-full md:w-56" />
+        
+    </div>
+
+    <div class="flex justify-end justify-content-end gap-2">
+        <p-button label="Cancelar" icon="pi pi-times" severity="secondary" 
+            (click)="modalCadastrarVisible = false" />
+        <p-button label="Matricular" icon="pi pi-save" (click)="matricular()" />
+    </div>
+</p-dialog>
