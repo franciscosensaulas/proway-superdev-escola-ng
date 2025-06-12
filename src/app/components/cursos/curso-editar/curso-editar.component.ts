@@ -16,6 +16,7 @@ import { DialogModule } from 'primeng/dialog';
 import { AlunoSelect } from '../../../models/aluno';
 import { SelectModule } from 'primeng/select';
 import { AlunoService } from '../../../services/aluno.service';
+import { MatriculaService } from '../../../services/matricula.service';
 
 @Component({
   selector: 'app-curso-editar',
@@ -43,6 +44,7 @@ export class CursoEditarComponent {
   alunos: AlunoSelect[];
 
   constructor(
+    private matriculaService: MatriculaService,
     private alunoService: AlunoService,
     private cursoService: CursoService,
     private messageService: MessageService,
@@ -63,6 +65,8 @@ export class CursoEditarComponent {
       next: curso => this.preencherCamposParaEditar(curso),
       error: erro => console.log("Ocorreu ao carregar os dados do curso:" + erro),
     });
+    
+    this.carregarMatriculas();
   }
 
   private preencherCamposParaEditar(curso: Curso) {
@@ -103,5 +107,17 @@ export class CursoEditarComponent {
   apresentarMensagemErroCarregarAlunos(error: any) {
     this.messageService.add({ detail: "Erro ao carregar os alunos", severity: "error" });
     console.error(error)
+  }
+
+  carregarMatriculas(){
+    this.matriculaService.obterTodos(this.idEditar).subscribe({
+      next: matriculas => this.matriculas = matriculas,
+      error: erro => this.apresentarMensagemErroCarregarMatriculas(erro)
+    })
+  }
+
+  apresentarMensagemErroCarregarMatriculas(error: any) {
+    this.messageService.add({ detail: "Erro ao carregar as matriculas", severity: "error" });
+    console.error(error);
   }
 }

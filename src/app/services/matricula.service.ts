@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Matricula, MatriculaCadastrar } from '../models/matricula';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,8 +17,12 @@ export class MatriculaService {
     return this.http.post<Matricula>(this.urlApi, form);
   }
 
-  obterTodos(): Observable<Matricula[]> {
-    return this.http.get<Matricula[]>(this.urlApi);
+  obterTodos(idCurso: number): Observable<Matricula[]> {
+    let params = new HttpParams()
+      .set("idCurso", idCurso.toString());
+
+    // http://localhost:8000/api/matriculas?idCurso=20
+    return this.http.get<Matricula[]>(this.urlApi, {params});
   }
 
   obterPorId(id: number): Observable<Matricula> {

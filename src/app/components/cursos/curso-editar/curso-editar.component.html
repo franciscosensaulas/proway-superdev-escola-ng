@@ -31,7 +31,7 @@
             <ng-template #body let-matricula>
                 <tr>
                     <td>{{ matricula.id }}</td>
-                    <td>{{ matricula.aluno.nome }}</td>
+                    <td>{{ matricula.aluno.nome }} {{matricula.aluno.sobrenome}}</td>
                     <td>{{ matricula.dataMatricula }}</td>
                     <td>
                         <!-- <p-button label="Editar" (click)="redirecionarEditar(matricula.id)" severity="warn"
