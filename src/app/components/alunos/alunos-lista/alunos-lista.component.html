@@ -5,13 +5,23 @@
     <p-button label="Novo Aluno" icon="pi pi-plus" (click)="abrirModalCadastrar()"></p-button>
 </div>
 
-<p-table [value]="alunos" 
-    [paginator]="true"
-    [rows]="40"
-    [rowsPerPageOptions]="[5, 10, 20, 40]"
-    [loading]="carregandoAlunos"
-    showGridlines stripedRows
-    [tableStyle]="{ 'min-width': '50rem' }">
+<p-table [value]="alunos" [paginator]="true" [rows]="40" [rowsPerPageOptions]="[5, 10, 20, 40]"
+    [loading]="carregandoAlunos" showGridlines stripedRows [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #caption>
+        <div class="flex justify-content-end flex-wrap">
+
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input type="text" pInputText placeholder="Buscar por nome ou cpf" 
+                    (keydown.enter)="realizarBuscaFiltrando()"
+                    [(ngModel)]="pesquisa" />
+                @if(buscandoRegistros == true){
+                    <p-inputicon styleClass="pi pi-spinner pi-spin" />
+                }
+            </p-iconfield>
+        </div>
+    </ng-template>
+
     <ng-template #header>
         <tr>
             <th>Código</th>
@@ -28,15 +38,18 @@
             <td>{{ aluno.cpf | formatarCpf }}</td>
             <td>{{ aluno.dataNascimento | dataHoraCustomizada }}</td>
             <td>
-                <p-button label="Editar" severity="warn" (click)="abrirModalEditar(aluno)" icon="pi pi-pencil" class="mr-2"/>
-                <p-button label="Apagar" outlined="true" (click)="confirmarParaApagar($event, aluno.id)" icon="pi pi-trash" severity="danger"/>
+                <p-button label="Editar" severity="warn" (click)="abrirModalEditar(aluno)" icon="pi pi-pencil"
+                    class="mr-2" />
+                <p-button label="Apagar" outlined="true" (click)="confirmarParaApagar($event, aluno.id)"
+                    icon="pi pi-trash" severity="danger" />
             </td>
         </tr>
     </ng-template>
 </p-table>
 
 
-<p-dialog [header]="dialogTituloCadastrarEditar" [modal]="true" [(visible)]="dialogVisivelCadastrarEditar" [style]="{ width: '25rem' }">
+<p-dialog [header]="dialogTituloCadastrarEditar" [modal]="true" [(visible)]="dialogVisivelCadastrarEditar"
+    [style]="{ width: '25rem' }">
 
     <div class="flex items-center gap-4 mb-2">
         <label for="campo-nome" class="font-semibold w-24">Nome</label>
@@ -45,7 +58,8 @@
 
     <div class="flex items-center gap-4 mb-2">
         <label for="campo-sobrenome" class="font-semibold w-24">Sobrenome</label>
-        <input pInputText id="campo-sobrenome" class="flex-auto" autocomplete="off" [(ngModel)]="alunoCadastro.sobrenome" />
+        <input pInputText id="campo-sobrenome" class="flex-auto" autocomplete="off"
+            [(ngModel)]="alunoCadastro.sobrenome" />
     </div>
 
     <div class="flex gap-4 mb-2">
@@ -55,17 +69,13 @@
 
     <div class="flex items-center gap-4 mb-2">
         <label for="campo-data-nascimento" class="font-semibold w-24">Data de nascimento</label>
-        <p-datepicker [(ngModel)]="alunoCadastro.dataNascimento" 
-            dateFormat="dd/mm/yy"
-            appendTo="body"
-            [minDate]="dataMinima" 
-            [maxDate]="dataMaxima" 
-            [readonlyInput]="true" 
-            [showIcon]="true" />
+        <p-datepicker [(ngModel)]="alunoCadastro.dataNascimento" dateFormat="dd/mm/yy" appendTo="body"
+            [minDate]="dataMinima" [maxDate]="dataMaxima" [readonlyInput]="true" [showIcon]="true" />
     </div>
 
     <div class="flex justify-end justify-content-end gap-2">
-        <p-button label="Cancelar" icon="pi pi-times" severity="secondary" (click)="dialogVisivelCadastrarEditar = false" />
+        <p-button label="Cancelar" icon="pi pi-times" severity="secondary"
+            (click)="dialogVisivelCadastrarEditar = false" />
         <p-button label="Salvar" icon="pi pi-save" (click)="salvar()" />
     </div>
 </p-dialog>

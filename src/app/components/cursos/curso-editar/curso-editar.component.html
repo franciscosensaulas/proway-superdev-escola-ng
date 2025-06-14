@@ -1,3 +1,6 @@
+<p-toast></p-toast>
+<p-confirmdialog/>
+
 <div class="flex justify-content-between flex-wrap">
     <div class="flex flex-column gap-4">
         <p-floatlabel>
@@ -32,12 +35,11 @@
                 <tr>
                     <td>{{ matricula.id }}</td>
                     <td>{{ matricula.aluno.nome }} {{matricula.aluno.sobrenome}}</td>
-                    <td>{{ matricula.dataMatricula }}</td>
+                    <td>{{ matricula.dataMatricula | dataHoraCustomizada }}</td>
                     <td>
-                        <!-- <p-button label="Editar" (click)="redirecionarEditar(matricula.id)" severity="warn"
-                            icon="pi pi-pencil" class="mr-2" />
-                        <p-button label="Apagar" (click)="confirmarParaApagar($event, matricula.id)" icon="pi pi-trash"
-                            severity="danger" /> -->
+                        <p-button outlined="true" 
+                            (click)="confirmarParaApagar($event, matricula.id)" 
+                            icon="pi pi-trash" severity="danger"/>
                     </td>
                 </tr>
             </ng-template>
@@ -68,7 +70,6 @@
             optionValue="id"
             placeholder="Escolha o aluno" 
             class="w-full md:w-56" />
-        
     </div>
 
     <div class="flex justify-end justify-content-end gap-2">
